@@ -25,12 +25,12 @@ describe "tests de camion"{
         camion.cargar(knightRider)
         camion.cargar(bumblebee)
 
-        assert.that(camion.todoPesoPar())
+        assert.that(camion.esPesoPar())
 
         camion.cargar(arena)
         arena.agregarPeso(3)
 
-        assert.notThat(camion.todoPesoPar())
+        assert.notThat(camion.esPesoPar())
 
     }
 
@@ -125,16 +125,16 @@ describe "tests de camion"{
 
         camion.cargar(knightRider)
 
-        assert.that(camion.puedeCircularEnRuta(50))
+        assert.that(camion.puedeCircular(50))
         
         camion.cargar(arena)
 
-        assert.notThat(camion.puedeCircularEnRuta(50))
+        assert.notThat(camion.puedeCircular(50))
 
         camion.descargar(arena)
         camion.cargar(residuos)
 
-        assert.notThat(camion.puedeCircularEnRuta(50))
+        assert.notThat(camion.puedeCircular(50))
     }
 
 // tieneAlgoQuePesaEntre(min,max) -----------------------------------------
