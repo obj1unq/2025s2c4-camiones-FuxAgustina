@@ -42,8 +42,12 @@ object camion {
 	}
 
 	method elDeNivel(nivel) {
-		return (cosas.find({ cosa => cosa.nivelPeligrosidad() == nivel }))
-	}
+    var resultado = cosas.find({ cosa => cosa.nivelPeligrosidad() == nivel })
+    if (resultado == null) { 
+        throw new Exception(message = "No hay ningún objeto con nivel de peligrosidad " + nivel)
+    }
+    return resultado
+}
 
 	method objetosQueSuperanPeligrosidad(nivel) {
 		return (cosas.filter({ cosa => cosa.nivelPeligrosidad() > nivel }))
@@ -114,6 +118,13 @@ object camion {
 		if (not camino.camionPuedePasar(self)) {self.error("esta excedido de peligrosidad")}
 		if (not camino.camionPuedePasar(self)) {self.error("no puede pasar por " + camino)}
 	}
+
+    // =========================
+    // Alias agregado para compatibilidad con rutas
+    method puedeCircularEnRuta(nivelPeligrosidad) {
+        return self.puedeCircular(nivelPeligrosidad)
+    }
+    // =========================
 }
 
 object rutaNueve {
